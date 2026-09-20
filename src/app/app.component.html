@@ -1,0 +1,23 @@
+<div class="calculator">
+  <div class="field">
+    <label>Premier nombre:</label>
+    <input type="number" [(ngModel)]="premierNombre">
+  </div>
+
+  <div class="field">
+    <label>Second nombre:</label>
+    <input type="number" [(ngModel)]="secondNombre">
+  </div>
+
+  <div class="field">
+    <label>Resultat:</label>
+    <input type="text" [value]="resultat" readonly>
+  </div>
+
+  <div class="ops">
+    <button (click)="calculer('+')">+</button>
+    <button (click)="calculer('-')">-</button>
+    <button (click)="calculer('*')">*</button>
+    <button (click)="calculer('/')">/</button>
+  </div>
+</div>
