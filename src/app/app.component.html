@@ -1,23 +1,43 @@
-<div class="calculator">
-  <div class="field">
-    <label>Premier nombre:</label>
-    <input type="number" [(ngModel)]="premierNombre">
+<main class="calculatrice">
+  <p class="modele">Calculatrice</p>
+
+  <!-- L'écran : affiche le résultat calculé par le .ts -->
+  <section class="ecran" aria-label="Écran de la calculatrice">
+    <span class="ecran-etiquette">Résultat</span>
+
+    <output class="ecran-valeur" aria-live="polite">
+      @if (resultat === 'Erreur') {
+        Erreur
+      } @else if (resultat === '') {
+        0
+      } @else {
+        {{ resultat | number: '1.0-8' }}
+      }
+    </output>
+
+    @if (resultat === 'Erreur') {
+      <span class="ecran-message">Division par zéro impossible</span>
+    }
+  </section>
+
+  <!-- Les deux nombres : [(ngModel)] les relie aux variables du .ts -->
+  <div class="champs">
+    <label class="champ" for="premier">
+      <span>Premier nombre</span>
+      <input id="premier" type="number" placeholder="0" [(ngModel)]="premierNombre">
+    </label>
+
+    <label class="champ" for="second">
+      <span>Second nombre</span>
+      <input id="second" type="number" placeholder="0" [(ngModel)]="secondNombre">
+    </label>
   </div>
 
-  <div class="field">
-    <label>Second nombre:</label>
-    <input type="number" [(ngModel)]="secondNombre">
+  <!-- Les touches : (click) appelle la fonction calculer() du .ts -->
+  <div class="touches">
+    <button type="button" class="touche" (click)="calculer('+')" aria-label="Additionner">+</button>
+    <button type="button" class="touche" (click)="calculer('-')" aria-label="Soustraire">&minus;</button>
+    <button type="button" class="touche" (click)="calculer('*')" aria-label="Multiplier">&times;</button>
+    <button type="button" class="touche" (click)="calculer('/')" aria-label="Diviser">&divide;</button>
   </div>
-
-  <div class="field">
-    <label>Resultat:</label>
-    <input type="text" [value]="resultat" readonly>
-  </div>
-
-  <div class="ops">
-    <button (click)="calculer('+')">+</button>
-    <button (click)="calculer('-')">-</button>
-    <button (click)="calculer('*')">*</button>
-    <button (click)="calculer('/')">/</button>
-  </div>
-</div>
+</main>
